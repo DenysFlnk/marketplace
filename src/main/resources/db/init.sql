@@ -89,6 +89,7 @@ CREATE TABLE orders (
 	user_id 	INTEGER NOT NULL,
 	quantity 	INTEGER NOT NULL,
 	total_price INTEGER NOT NULL,
+    order_date  TIMESTAMP,
 	status		VARCHAR,
 	FOREIGN KEY (product_id) REFERENCES product (id),
 	FOREIGN KEY (user_id) REFERENCES users (id)

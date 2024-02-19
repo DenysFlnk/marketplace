@@ -90,10 +90,10 @@ VALUES  (3, 2);
 INSERT INTO product_rating  (id, product_id, user_id, rating, comment)
 VALUES  (1, 4, 3, 5, 'Дуже гарний браслет!');
 
-INSERT INTO orders  (id, product_id, user_id, quantity, total_price, status)
-VALUES  (1, 4, 3, 1, 1200, 'COMPLETED'),
-		(2, 6, 2, 2, 1100, 'IN_PROGRESS'),
-		(3, 9, 1, 1, 150, 'CANCELED');
+INSERT INTO orders  (id, product_id, user_id, quantity, total_price, order_date, status)
+VALUES  (1, 4, 3, 1, 1200, '2024-01-09 19:10:25', 'COMPLETED'),
+		(2, 6, 2, 2, 1100, '2024-02-01 09:00:38', 'IN_PROGRESS'),
+		(3, 9, 1, 1, 150, '2024-02-15 21:27:01', 'CANCELED');
 
 
 
