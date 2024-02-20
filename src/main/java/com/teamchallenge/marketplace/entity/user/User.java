@@ -1,6 +1,8 @@
-package com.teamchallenge.marketplace.entity;
+package com.teamchallenge.marketplace.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.teamchallenge.marketplace.entity.BaseEntity;
+import com.teamchallenge.marketplace.entity.product.Product;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
