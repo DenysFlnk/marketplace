@@ -43,6 +43,11 @@ public class Product extends BaseEntity {
     @NotBlank
     private String description;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinColumn(table = "product_category", name = "category_id")
+    @ToString.Exclude
+    private List<ProductCategory> categories;
+
     @OneToMany(fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<ProductRating> ratings;
@@ -54,6 +59,7 @@ public class Product extends BaseEntity {
         this.quantity = product.getQuantity();
         this.price = product.getPrice();
         this.description = product.getDescription();
+        this.categories = product.getCategories();
         this.ratings = product.getRatings();
     }
 
