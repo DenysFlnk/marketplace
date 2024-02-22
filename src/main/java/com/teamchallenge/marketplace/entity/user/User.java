@@ -3,7 +3,6 @@ package com.teamchallenge.marketplace.entity.user;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.teamchallenge.marketplace.entity.BaseEntity;
 import com.teamchallenge.marketplace.entity.product.Product;
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -22,9 +21,9 @@ import java.util.Set;
 @AllArgsConstructor
 @ToString
 public class User extends BaseEntity {
-    @Nullable
+    @OneToOne(mappedBy = "user")
     @ToString.Exclude
-    private String imgUrl;
+    private UserImage avatar;
 
     @Column(name = "username")
     @NotBlank
@@ -40,19 +39,27 @@ public class User extends BaseEntity {
     @ToString.Exclude
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "role_id"))
-    @ElementCollection(fetch = FetchType.LAZY)
-    private Set<Role> roles;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    @ToString.Exclude
+    private Set<UserRole> roles;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(table = "user_favorites", name = "product_id", nullable = false)
+    @JoinTable(
+            name = "user_favorites",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     @ToString.Exclude
     private List<Product> favorites;
 
     public User(User user) {
         this.id = user.getId();
-        this.imgUrl = user.getImgUrl();
+        this.avatar = user.getAvatar();
         this.username = user.getUsername();
         this.email = user.getEmail();
         this.password = user.getPassword();

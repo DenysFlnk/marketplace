@@ -5,9 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.Hibernate;
 import org.springframework.data.domain.Persistable;
 import org.springframework.util.Assert;
@@ -18,19 +16,14 @@ import java.util.Objects;
 @MappedSuperclass
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public abstract class BaseEntity implements Persistable<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
-
-    protected BaseEntity() {
-    }
-
-    protected BaseEntity(Integer id) {
-        this.id = id;
-    }
 
     public int id() {
         Assert.notNull(this.id, "Entity must have id");

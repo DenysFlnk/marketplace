@@ -7,14 +7,14 @@ VALUES 	(1, 'John', 'john@gmail.com', 'johnsPassword'),
 		(6, 'Embroidery Shop', 'embroidery.shop@gmail.com', 'embroidery1shopsPassword'),
 		(7, 'Leather World', 'leather.world@gmail.com', 'leather1worldPassword');
 
-INSERT INTO user_img (user_id, img_url)
-VALUES  (1, 'placeholder'),
-		(2, 'placeholder'),
-		(3, 'placeholder'),
-		(4, 'placeholder'),
-		(5, 'placeholder'),
-		(6, 'placeholder'),
-		(7, 'placeholder');
+INSERT INTO user_img (id, user_id, img_url)
+VALUES  (1, 1, 'placeholder'),
+		(2, 2, 'placeholder'),
+		(3, 3, 'placeholder'),
+		(4, 4, 'placeholder'),
+		(5, 5, 'placeholder'),
+		(6, 6, 'placeholder'),
+		(7, 7, 'placeholder');
 
 INSERT INTO roles (id, name)
 VALUES  (1, 'USER'),

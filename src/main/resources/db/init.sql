@@ -32,6 +32,7 @@ CREATE TABLE user_role (
 );
 
 CREATE TABLE user_img (
+    id 			SERIAL PRIMARY KEY,
 	user_id 	INTEGER NOT NULL,
 	img_url		VARCHAR,
 	FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE,

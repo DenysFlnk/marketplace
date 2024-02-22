@@ -1,4 +1,4 @@
-package com.teamchallenge.marketplace.entity.product;
+package com.teamchallenge.marketplace.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.teamchallenge.marketplace.entity.BaseEntity;
@@ -8,25 +8,25 @@ import lombok.*;
 import java.util.Objects;
 
 @Entity
-@Table(name = "product_img")
+@Table(name = "user_img")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProductImage extends BaseEntity {
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id")
+public class UserImage extends BaseEntity {
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
     @JsonBackReference
     @ToString.Exclude
-    private Product product;
+    private User user;
 
     @Column(name = "img_url")
     private String imgUrl;
 
-    public ProductImage(ProductImage image) {
+    public UserImage(UserImage image) {
         this.id = image.getId();
-        this.product = image.getProduct();
+        this.user = image.getUser();
         this.imgUrl = image.getImgUrl();
     }
 
@@ -35,8 +35,8 @@ public class ProductImage extends BaseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        ProductImage that = (ProductImage) o;
-        return Objects.equals(imgUrl, that.imgUrl);
+        UserImage userImage = (UserImage) o;
+        return Objects.equals(imgUrl, userImage.imgUrl);
     }
 
     @Override

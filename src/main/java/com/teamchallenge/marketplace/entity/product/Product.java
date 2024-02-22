@@ -44,7 +44,11 @@ public class Product extends BaseEntity {
     private String description;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinColumn(table = "product_category", name = "category_id")
+    @JoinTable(
+            name = "product_category",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
     @ToString.Exclude
     private List<ProductCategory> categories;
 
