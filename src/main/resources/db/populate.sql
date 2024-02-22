@@ -7,14 +7,14 @@ VALUES 	(1, 'John', 'john@gmail.com', 'johnsPassword'),
 		(6, 'Embroidery Shop', 'embroidery.shop@gmail.com', 'embroidery1shopsPassword'),
 		(7, 'Leather World', 'leather.world@gmail.com', 'leather1worldPassword');
 
-INSERT INTO user_img (user_id, img_url)
-VALUES  (1, 'placeholder'),
-		(2, 'placeholder'),
-		(3, 'placeholder'),
-		(4, 'placeholder'),
-		(5, 'placeholder'),
-		(6, 'placeholder'),
-		(7, 'placeholder');
+INSERT INTO user_img (id, user_id, img_url)
+VALUES  (1, 1, 'placeholder'),
+		(2, 2, 'placeholder'),
+		(3, 3, 'placeholder'),
+		(4, 4, 'placeholder'),
+		(5, 5, 'placeholder'),
+		(6, 6, 'placeholder'),
+		(7, 7, 'placeholder');
 
 INSERT INTO roles (id, name)
 VALUES  (1, 'USER'),
@@ -90,10 +90,10 @@ VALUES  (3, 2);
 INSERT INTO product_rating  (id, product_id, user_id, rating, comment)
 VALUES  (1, 4, 3, 5, 'Дуже гарний браслет!');
 
-INSERT INTO orders  (id, product_id, user_id, quantity, total_price, status)
-VALUES  (1, 4, 3, 1, 1200, 'COMPLETED'),
-		(2, 6, 2, 2, 1100, 'IN_PROGRESS'),
-		(3, 9, 1, 1, 150, 'CANCELED');
+INSERT INTO orders  (id, product_id, user_id, quantity, total_price, order_date, status)
+VALUES  (1, 4, 3, 1, 1200, '2024-01-09 19:10:25', 'COMPLETED'),
+		(2, 6, 2, 2, 1100, '2024-02-01 09:00:38', 'IN_PROGRESS'),
+		(3, 9, 1, 1, 150, '2024-02-15 21:27:01', 'CANCELED');
 
 
 
