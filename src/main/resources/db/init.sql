@@ -42,6 +42,7 @@ CREATE TABLE user_img (
 CREATE TABLE product (
 	id 			SERIAL PRIMARY KEY,
 	creator_id  INTEGER NOT NULL,
+	name        VARCHAR NOT NULL,
 	quantity 	INTEGER NOT NULL,
 	price 		INTEGER NOT NULL,
 	description TEXT,
