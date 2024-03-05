@@ -25,7 +25,7 @@ public class Product extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")
-    @JsonBackReference
+    @JsonBackReference(value = "creator-product")
     @ToString.Exclude
     private User creator;
 

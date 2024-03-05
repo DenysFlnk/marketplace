@@ -17,7 +17,7 @@ import java.util.Objects;
 public class ProductImage extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    @JsonBackReference
+    @JsonBackReference(value = "product-image")
     @ToString.Exclude
     private Product product;
 
