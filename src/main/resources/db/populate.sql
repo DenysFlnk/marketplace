@@ -18,16 +18,17 @@ VALUES  (1, 1, 'placeholder'),
 
 INSERT INTO roles (id, name)
 VALUES  (1, 'USER'),
-		(2, 'ADMIN');
+        (2, 'ARTIST'),
+		(3, 'ADMIN');
 
 INSERT INTO user_role (user_id, role_id)
-VALUES  (1, 2),
+VALUES  (1, 3),
 		(2, 1),
 		(3, 1),
-		(4, 1),
-		(5, 1),
-		(6, 1),
-		(7, 1);
+		(4, 2),
+		(5, 2),
+		(6, 2),
+		(7, 2);
 
 INSERT INTO category (id, name)
 VALUES  (1, 'Ceramic'),
