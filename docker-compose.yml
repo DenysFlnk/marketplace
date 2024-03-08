@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  app:
+    build: .
+    restart: always
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/team_challenge
+    depends_on:
+      - db
+    volumes:
+      - ./app-logs:/app/logs
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=userPassword
+      - POSTGRES_DB=team_challenge
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/main/resources/db/init.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./src/main/resources/db/populate.sql:/docker-entrypoint-initdb.d/2.sql

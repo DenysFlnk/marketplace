@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.teamchallenge</groupId>
     <artifactId>marketplace</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>marketplace</name>
     <description>marketplace</description>
     <properties>
