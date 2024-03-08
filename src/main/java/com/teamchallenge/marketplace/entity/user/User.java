@@ -2,6 +2,7 @@ package com.teamchallenge.marketplace.entity.user;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.teamchallenge.marketplace.entity.BaseEntity;
+import com.teamchallenge.marketplace.entity.order.Order;
 import com.teamchallenge.marketplace.entity.product.Product;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -57,6 +58,10 @@ public class User extends BaseEntity {
     @ToString.Exclude
     private List<Product> favorites;
 
+    @OneToMany(mappedBy = "user")
+    @ToString.Exclude
+    private List<Order> orderHistory;
+
     public User(User user) {
         this.id = user.getId();
         this.avatar = user.getAvatar();
@@ -65,6 +70,7 @@ public class User extends BaseEntity {
         this.password = user.getPassword();
         this.roles = user.getRoles();
         this.favorites = user.getFavorites();
+        this.orderHistory = user.getOrderHistory();
     }
 
     @Override

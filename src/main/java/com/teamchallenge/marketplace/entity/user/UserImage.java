@@ -17,7 +17,7 @@ import java.util.Objects;
 public class UserImage extends BaseEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    @JsonBackReference(value = "user-image")
     @ToString.Exclude
     private User user;
 

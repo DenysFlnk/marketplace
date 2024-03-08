@@ -25,9 +25,13 @@ public class Product extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "creator_id")
-    @JsonBackReference
+    @JsonBackReference(value = "creator-product")
     @ToString.Exclude
     private User creator;
+
+    @Column(name = "name")
+    @NotBlank
+    private String name;
 
     @Column(name = "quantity")
     @NotBlank
@@ -60,6 +64,7 @@ public class Product extends BaseEntity {
         this.id = product.getId();
         this.images = product.getImages();
         this.creator = product.getCreator();
+        this.name = product.getName();
         this.quantity = product.getQuantity();
         this.price = product.getPrice();
         this.description = product.getDescription();

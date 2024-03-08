@@ -20,13 +20,13 @@ import java.util.Objects;
 public class ProductRating extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
-    @JsonBackReference
+    @JsonBackReference(value = "product-rating")
     @ToString.Exclude
     private Product product;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
-    @JsonBackReference
+    @JsonBackReference(value = "user-rating")
     @ToString.Exclude
     private User user;
 

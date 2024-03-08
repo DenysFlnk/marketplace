@@ -15,7 +15,8 @@ CREATE TABLE users (
 	id 			SERIAL PRIMARY KEY,
 	username 	VARCHAR,
 	email 		VARCHAR,
-	us_password VARCHAR
+	us_password VARCHAR,
+	CONSTRAINT user_email_idx UNIQUE (email)
 );
 
 CREATE TABLE roles (
@@ -42,6 +43,7 @@ CREATE TABLE user_img (
 CREATE TABLE product (
 	id 			SERIAL PRIMARY KEY,
 	creator_id  INTEGER NOT NULL,
+	name        VARCHAR NOT NULL,
 	quantity 	INTEGER NOT NULL,
 	price 		INTEGER NOT NULL,
 	description TEXT,
