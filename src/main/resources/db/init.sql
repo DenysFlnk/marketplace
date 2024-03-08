@@ -15,7 +15,8 @@ CREATE TABLE users (
 	id 			SERIAL PRIMARY KEY,
 	username 	VARCHAR,
 	email 		VARCHAR,
-	us_password VARCHAR
+	us_password VARCHAR,
+	CONSTRAINT user_email_idx UNIQUE (email)
 );
 
 CREATE TABLE roles (
