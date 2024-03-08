@@ -16,7 +16,7 @@ public class ProductUtil {
 
     public static ProductBriefTo getProductBriefTo(Product product) {
         return new ProductBriefTo(product.id(), getFirstOrEmptyImage(product.getImages()), product.getName(),
-                product.getPrice());
+                product.getPrice(), product.getQuantity() > 0);
     }
 
     private static ProductImage getFirstOrEmptyImage(List<ProductImage> productImages) {

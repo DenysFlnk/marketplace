@@ -4,8 +4,7 @@ import com.teamchallenge.marketplace.entity.product.ProductImage;
 
 import java.util.Objects;
 
-public record ProductBriefTo(int id, ProductImage image, String name, int price) {
-    // todo: boolean isAvailable - based on item quantity
+public record ProductBriefTo(int id, ProductImage image, String name, int price, boolean isAvailable) {
 
     @Override
     public boolean equals(Object o) {
