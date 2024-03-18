@@ -54,6 +54,7 @@ CREATE TABLE category (
 	id 			SERIAL PRIMARY KEY,
 	name		VARCHAR
 );
+CREATE INDEX category_name_idx ON category USING HASH (name);
 
 CREATE TABLE product_category (
 	product_id 	INTEGER NOT NULL,

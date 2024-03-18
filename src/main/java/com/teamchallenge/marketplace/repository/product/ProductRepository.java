@@ -4,10 +4,11 @@ import com.teamchallenge.marketplace.entity.product.Product;
 import jakarta.transaction.Transactional;
 import org.hibernate.Hibernate;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import java.util.Optional;
 
-public interface ProductRepository extends JpaRepository<Product, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer>, JpaSpecificationExecutor<Product> {
     @Transactional
     default Optional<Product> getProductWithAllProperties(int id) {
         Optional<Product> optional = this.findById(id);
