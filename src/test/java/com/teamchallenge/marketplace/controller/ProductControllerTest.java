@@ -1,8 +1,10 @@
 package com.teamchallenge.marketplace.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.teamchallenge.marketplace.AbstractTest;
 import com.teamchallenge.marketplace.JsonUtil;
 import com.teamchallenge.marketplace.data.ProductTestData;
+import com.teamchallenge.marketplace.dto.PageTo;
 import com.teamchallenge.marketplace.dto.product.ProductBriefTo;
 import com.teamchallenge.marketplace.dto.product.ProductDetailTo;
 import org.junit.jupiter.api.Test;
@@ -36,8 +38,10 @@ class ProductControllerTest extends AbstractTest {
 
     @Test
     void getProductsPresentsAndEmbroideryAll() throws Exception {
-        int pageNumber = 0, pageSize = 7;
-        List<ProductBriefTo> expected = ProductTestData.getPresentsAndEmbroidery(pageNumber, pageSize);
+        int pageNumber = 0, pageSize = 2;
+        int expectedTotalProducts = ProductTestData.getPresentsAndEmbroidery(0, Integer.MAX_VALUE).size();
+        List<ProductBriefTo> expectedContent = ProductTestData.getPresentsAndEmbroidery(pageNumber, pageSize);
+
         MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get(PRODUCT_URL)
                         .param("categories", "Embroidery", "Present")
                         .param("pageSize", String.valueOf(pageSize))
@@ -47,8 +51,11 @@ class ProductControllerTest extends AbstractTest {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        List<ProductBriefTo> actual = JsonUtil.readValuesFromJson(getContentAsString(result),ProductBriefTo.class);
+        PageTo<ProductBriefTo> actual = JsonUtil.readValueFromJson(getContentAsString(result), new TypeReference<>(){});
+        int actualTotalProducts = actual.totalEntries();
+        List<ProductBriefTo> actualContent = actual.content();
 
-        assertIterableEquals(expected, actual);
+        assertEquals(expectedTotalProducts, actualTotalProducts);
+        assertIterableEquals(expectedContent, actualContent);
     }
 }

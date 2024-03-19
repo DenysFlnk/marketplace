@@ -34,7 +34,7 @@ public class ProductTestData {
         ProductBriefTo p10 = new ProductBriefTo(10, null, "Вишивана сукня", 800, true);
 
         List<ProductBriefTo> briefTos = List.of(p1, p2, p3, p4, p5, p6, p9, p10);
-        List<ProductBriefTo> result = new ArrayList<>(pageSize);
+        List<ProductBriefTo> result = new ArrayList<>();
 
         int startNumber = pageNumber * pageSize;
         int endNumber = startNumber + pageSize - 1;

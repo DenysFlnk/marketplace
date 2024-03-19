@@ -7,6 +7,7 @@ import com.teamchallenge.marketplace.repository.product.ProductRepository;
 import com.teamchallenge.marketplace.service.product.filter.specification.CategorySpecification;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -32,7 +33,7 @@ public class ProductService {
                 .orElseThrow(() -> new RuntimeException("Product not found"));
     }
 
-    public List<Product> getProducts(List<String> categories, Map<String, String> params) {
+    public Page<Product> getProducts(List<String> categories, Map<String, String> params) {
         List<ProductCategory> actualCategories = null;
         if (categories != null) {
             actualCategories = getActualCategories(categories);
@@ -40,8 +41,7 @@ public class ProductService {
 
         Specification<Product> specification = getSpecification(actualCategories, params);
         Pageable page = getPageable(params);
-
-        return productRepository.findAll(specification, page).getContent();
+        return productRepository.findAll(specification, page);
     }
 
     private List<ProductCategory> getActualCategories(List<String> categories) {

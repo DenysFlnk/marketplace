@@ -25,6 +25,10 @@ public class JsonUtil {
         return objectMapper.readValue(json, clazz);
     }
 
+    public static <T> T readValueFromJson(String json, TypeReference<T> clazz) throws JsonProcessingException {
+        return objectMapper.readValue(json, clazz);
+    }
+
     public static <T> List<T> readValuesFromJson(String json, Class<T> clazz) throws IOException {
         ObjectReader reader = objectMapper.readerFor(clazz);
         return reader.<T>readValues(json).readAll();
