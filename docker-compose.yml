@@ -9,8 +9,6 @@ services:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/team_challenge
     depends_on:
       - db
-    volumes:
-      - ./app-logs:/app/logs
   db:
     image: postgres
     restart: always

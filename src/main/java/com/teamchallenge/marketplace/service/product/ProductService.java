@@ -4,12 +4,14 @@ import com.teamchallenge.marketplace.entity.product.Product;
 import com.teamchallenge.marketplace.entity.product.ProductCategory;
 import com.teamchallenge.marketplace.repository.product.ProductCategoryRepository;
 import com.teamchallenge.marketplace.repository.product.ProductRepository;
+import com.teamchallenge.marketplace.service.PageProps;
 import com.teamchallenge.marketplace.service.product.filter.specification.CategorySpecification;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +25,6 @@ public class ProductService {
     private ProductRepository productRepository;
 
     private ProductCategoryRepository categoryRepository;
-
-    private static final int STARTING_PAGE = 0;
-
-    private static final int PAGE_SIZE = 20; // will change in future
 
     public Product getProduct(int id) {
         return productRepository.getProductWithAllProperties(id)
@@ -44,6 +42,13 @@ public class ProductService {
         return productRepository.findAll(specification, page);
     }
 
+    public Page<Product> searchProducts(Map<String, String> params) {
+        Pageable page = getPageable(params);
+        String name = params.getOrDefault("name", "");
+
+        return productRepository.findProductsByNameContaining(name, page);
+    }
+
     private List<ProductCategory> getActualCategories(List<String> categories) {
         return categoryRepository.getProductCategoriesByNameIn(categories);
     }
@@ -53,9 +58,18 @@ public class ProductService {
     }
 
     private Pageable getPageable(Map<String, String> params) {
-        int pageNumber = Integer.parseInt(params.getOrDefault("pageNumber", String.valueOf(STARTING_PAGE)));
-        int pageSize = Integer.parseInt(params.getOrDefault("pageSize", String.valueOf(PAGE_SIZE)));
+        int pageNumber = Integer.parseInt(params.getOrDefault("pageNumber", String.valueOf(PageProps.STARTING_PAGE)));
+        int pageSize = Integer.parseInt(params.getOrDefault("pageSize", String.valueOf(PageProps.PAGE_SIZE)));
 
-        return PageRequest.of(pageNumber, pageSize);
+        String sortProps = params.get("sort");
+        Sort sort;
+        if (sortProps != null) {
+            String direction = params.getOrDefault("direction", PageProps.SORT_DIRECTION);
+            sort = Sort.by(Sort.Direction.fromString(direction), sortProps);
+        } else {
+            sort = PageProps.SORT_UNSORTED;
+        }
+
+        return PageRequest.of(pageNumber, pageSize, sort);
     }
 }

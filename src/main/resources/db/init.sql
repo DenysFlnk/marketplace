@@ -49,6 +49,7 @@ CREATE TABLE product (
 	description TEXT,
 	FOREIGN KEY (creator_id) REFERENCES users (id) ON DELETE CASCADE
 );
+CREATE INDEX product_name_idx ON product (name);
 
 CREATE TABLE category (
 	id 			SERIAL PRIMARY KEY,

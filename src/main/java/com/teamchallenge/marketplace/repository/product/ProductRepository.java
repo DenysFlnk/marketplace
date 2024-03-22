@@ -3,6 +3,8 @@ package com.teamchallenge.marketplace.repository.product;
 import com.teamchallenge.marketplace.entity.product.Product;
 import jakarta.transaction.Transactional;
 import org.hibernate.Hibernate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -27,4 +29,6 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 
         return optional;
     }
+
+    Page<Product> findProductsByNameContaining(String name, Pageable pageable);
 }

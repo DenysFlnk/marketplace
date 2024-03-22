@@ -1,11 +1,13 @@
 package com.teamchallenge.marketplace.util.product;
 
+import com.teamchallenge.marketplace.dto.PageTo;
 import com.teamchallenge.marketplace.dto.product.ProductBriefTo;
 import com.teamchallenge.marketplace.dto.product.ProductDetailTo;
 import com.teamchallenge.marketplace.entity.product.Product;
 import com.teamchallenge.marketplace.entity.product.ProductImage;
 import com.teamchallenge.marketplace.entity.product.ProductRating;
 import com.teamchallenge.marketplace.util.user.UserUtil;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -40,5 +42,11 @@ public class ProductUtil {
         double sum = ratings.stream().mapToDouble(ProductRating::getRating).sum();
 
         return (float) (sum / ratings.size());
+    }
+
+    public static PageTo<ProductBriefTo> getProductBriefPageTo(Page<Product> page) {
+        int totalEntries = (int) page.getTotalElements();
+        List<ProductBriefTo> content = ProductUtil.getProductBriefTos(page.getContent());
+        return new PageTo<>(totalEntries, content);
     }
 }

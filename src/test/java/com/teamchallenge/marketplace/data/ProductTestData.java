@@ -44,4 +44,8 @@ public class ProductTestData {
 
         return result;
     }
+
+    public static ProductBriefTo getFunnyHat() {
+        return new ProductBriefTo(9, null, "Смішна шапка", 150, true);
+    }
 }

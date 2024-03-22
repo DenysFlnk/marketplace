@@ -33,9 +33,13 @@ public class ProductController {
                                               @RequestParam(required = false) Map<String, String> params) {
         log.info("getProducts: categories {}, parameters {}", categories, params);
         Page<Product> page = productService.getProducts(categories, params);
+        return ProductUtil.getProductBriefPageTo(page);
+    }
 
-        int totalEntries = (int) page.getTotalElements();
-        List<ProductBriefTo> content = ProductUtil.getProductBriefTos(page.getContent());
-        return new PageTo<>(totalEntries, content);
+    @GetMapping(value = "/search")
+    public PageTo<ProductBriefTo> searchProducts(@RequestParam(required = false) Map<String, String> params) {
+        log.info("searchProducts: params {}", params);
+        Page<Product> page = productService.searchProducts(params);
+        return ProductUtil.getProductBriefPageTo(page);
     }
 }

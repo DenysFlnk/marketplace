@@ -37,7 +37,7 @@ class ProductControllerTest extends AbstractTest {
     }
 
     @Test
-    void getProductsPresentsAndEmbroideryAll() throws Exception {
+    void getProductsPresentsAndEmbroidery() throws Exception {
         int pageNumber = 0, pageSize = 2;
         int expectedTotalProducts = ProductTestData.getPresentsAndEmbroidery(0, Integer.MAX_VALUE).size();
         List<ProductBriefTo> expectedContent = ProductTestData.getPresentsAndEmbroidery(pageNumber, pageSize);
@@ -57,5 +57,23 @@ class ProductControllerTest extends AbstractTest {
 
         assertEquals(expectedTotalProducts, actualTotalProducts);
         assertIterableEquals(expectedContent, actualContent);
+    }
+
+    @Test
+    void searchProducts() throws Exception {
+        ProductBriefTo expected = ProductTestData.getFunnyHat();
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get(PRODUCT_URL + "/search")
+                        .param("name", "Смішна шапка"))
+                .andDo(print())
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        PageTo<ProductBriefTo> actualPage = JsonUtil.readValueFromJson(getContentAsString(result), new TypeReference<>(){});
+        List<ProductBriefTo> actualContent = actualPage.content();
+        ProductBriefTo actual = actualContent.get(0);
+
+        assertEquals(expected, actual);
     }
 }
