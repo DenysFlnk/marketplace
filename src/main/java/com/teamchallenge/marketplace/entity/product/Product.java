@@ -57,6 +57,11 @@ public class Product extends BaseEntity {
     private List<ProductCategory> categories;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "product_rating",
+            joinColumns = @JoinColumn(name = "product_id"),
+            inverseJoinColumns = @JoinColumn(name = "id")
+    )
     @ToString.Exclude
     private List<ProductRating> ratings;
 

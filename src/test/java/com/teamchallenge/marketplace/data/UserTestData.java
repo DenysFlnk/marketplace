@@ -3,6 +3,7 @@ package com.teamchallenge.marketplace.data;
 import com.teamchallenge.marketplace.dto.order.OrderHistoryTo;
 import com.teamchallenge.marketplace.dto.product.ProductBriefTo;
 import com.teamchallenge.marketplace.dto.user.ProfileTo;
+import com.teamchallenge.marketplace.dto.user.UserBriefTo;
 import com.teamchallenge.marketplace.dto.user.UserFavoritesTo;
 import com.teamchallenge.marketplace.dto.user.UserHistoryTo;
 import com.teamchallenge.marketplace.entity.order.OrderStatus;
@@ -27,5 +28,9 @@ public class UserTestData {
         List<ProductBriefTo> favorites = List.of(new ProductBriefTo(2, null, "Смішна кружка", 280, true));
 
         return new UserFavoritesTo(3, null, "Julia", favorites);
+    }
+
+    public static UserBriefTo getUserBriefTo() {
+        return new UserBriefTo(5, null, "Tiffany`s Jewelry");
     }
 }

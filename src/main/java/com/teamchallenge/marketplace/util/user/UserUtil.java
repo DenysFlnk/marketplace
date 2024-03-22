@@ -1,9 +1,6 @@
 package com.teamchallenge.marketplace.util.user;
 
-import com.teamchallenge.marketplace.dto.user.ProfileTo;
-import com.teamchallenge.marketplace.dto.user.RegistrationTo;
-import com.teamchallenge.marketplace.dto.user.UserFavoritesTo;
-import com.teamchallenge.marketplace.dto.user.UserHistoryTo;
+import com.teamchallenge.marketplace.dto.user.*;
 import com.teamchallenge.marketplace.entity.user.User;
 import com.teamchallenge.marketplace.entity.user.UserRole;
 import com.teamchallenge.marketplace.util.order.OrderUtil;
@@ -48,5 +45,9 @@ public class UserUtil {
                     .findFirst()
                     .ifPresent(r -> role.setId(r.id()));
         }
+    }
+
+    public static UserBriefTo getUserBriefTo(User user) {
+        return new UserBriefTo(user.id(), user.getAvatar(), user.getUsername());
     }
 }
