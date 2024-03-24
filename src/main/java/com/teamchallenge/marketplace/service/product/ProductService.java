@@ -50,7 +50,11 @@ public class ProductService {
     }
 
     private List<ProductCategory> getActualCategories(List<String> categories) {
-        return categoryRepository.getProductCategoriesByNameIn(categories);
+        List<String> categoriesCaseInsensitive = categories.stream()
+                .map(String::toLowerCase)
+                .map(s -> Character.toUpperCase(s.charAt(0)) + s.substring(1))
+                .toList();
+        return categoryRepository.getProductCategoriesByNameIn(categoriesCaseInsensitive);
     }
 
     private Specification<Product> getSpecification(List<ProductCategory> categories, Map<String, String> params) {
