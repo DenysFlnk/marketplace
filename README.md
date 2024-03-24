@@ -16,37 +16,13 @@
 
 ## Features
 Currently implemented user endpoints:
-1. User registration:
-````
-#POST
-/rest-api/register 
-<-- Consumes RegistrationTo entity
---> Returns User profile as ProfileTo entity
-````
-See [RegistrationTo](src/main/java/com/teamchallenge/marketplace/dto/user/RegistrationTo.java), [ProfileTo](src/main/java/com/teamchallenge/marketplace/dto/user/ProfileTo.java).
-2. User profile:
-````
-#GET
-/rest-api/users/{id}
-<-- Consumes desired user id
---> Returns User profile as ProfileTo entity
-````
-3. User order history:
-````
-#GET
-/rest-api/users/{id}/history
-<-- Consumes desired user id
---> Returns user order history as UserHistoryTo entity
-````
-See [UserHistoryTo](src/main/java/com/teamchallenge/marketplace/dto/user/UserHistoryTo.java).
-4. User favorites:
-````
-#GET
-/rest-api/users/{id}/favorites
-<-- Consumes desired user id
---> Returns user favorites as UserFavoritesTo entity 
-````
-See [UserFavoritesTo](src/main/java/com/teamchallenge/marketplace/dto/user/UserFavoritesTo.java).
+1. [User registration](http://localhost:8080/swagger-ui/index.html#/registration-controller/register)
+2. [User profile](http://localhost:8080/swagger-ui/index.html#/user-controller/getProfile)
+3. [User order history](http://localhost:8080/swagger-ui/index.html#/user-controller/getUserWithHistory)
+4. [User favorites](http://localhost:8080/swagger-ui/index.html#/user-controller/getUserWithFavorites)
+5. [Product page](http://localhost:8080/swagger-ui/index.html#/Products/getProduct)
+6. [Product list with filters](http://localhost:8080/swagger-ui/index.html#/Products/getProducts)
+7. [Product search by name and parameters](http://localhost:8080/swagger-ui/index.html#/Products/searchProducts)
 ## Setup
 1. Clone project via Git.
 2. Install and run [Docker](https://www.docker.com/).
