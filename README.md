@@ -16,10 +16,10 @@
 
 ## Features
 Currently implemented user endpoints:
-1. [User registration](http://localhost:8080/swagger-ui/index.html#/registration-controller/register)
-2. [User profile](http://localhost:8080/swagger-ui/index.html#/user-controller/getProfile)
-3. [User order history](http://localhost:8080/swagger-ui/index.html#/user-controller/getUserWithHistory)
-4. [User favorites](http://localhost:8080/swagger-ui/index.html#/user-controller/getUserWithFavorites)
+1. [User registration](http://localhost:8080/swagger-ui/index.html#/Register/register)
+2. [User profile](http://localhost:8080/swagger-ui/index.html#/Users/getProfile)
+3. [User order history](http://localhost:8080/swagger-ui/index.html#/Users/getUserWithHistory)
+4. [User favorites](http://localhost:8080/swagger-ui/index.html#/Users/getUserWithFavorites)
 5. [Product page](http://localhost:8080/swagger-ui/index.html#/Products/getProduct)
 6. [Product list with filters](http://localhost:8080/swagger-ui/index.html#/Products/getProducts)
 7. [Product search by name and parameters](http://localhost:8080/swagger-ui/index.html#/Products/searchProducts)
