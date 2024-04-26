@@ -11,10 +11,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Tag(name = "Users", description = "User management API`s")
 @RestController
@@ -29,6 +27,14 @@ public class UserController {
     public ProfileTo getProfile(@PathVariable Integer id) {
         log.info("getProfile: id {}", id);
         User user = userService.get(id);
+        return UserUtil.getProfileTo(user);
+    }
+
+    @Operation(summary = "Update user profile picture")
+    @PutMapping(value = "/{id}/image")
+    public ProfileTo updateProfilePicture(@PathVariable Integer id, @RequestBody MultipartFile img) {
+        log.info("updateProfilePicture: user id {}", id);
+        User user = userService.updatePicture(id, img);
         return UserUtil.getProfileTo(user);
     }
 

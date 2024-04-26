@@ -1,4 +1,7 @@
 spring:
+  config:
+    import: amazonS3.yaml
+
   jpa:
     show-sql: true
     open-in-view: false

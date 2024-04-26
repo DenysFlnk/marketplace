@@ -7,12 +7,14 @@ import com.teamchallenge.marketplace.entity.user.UserRole;
 import com.teamchallenge.marketplace.repository.order.OrderRepository;
 import com.teamchallenge.marketplace.repository.user.UserRepository;
 import com.teamchallenge.marketplace.repository.user.UserRoleRepository;
+import com.teamchallenge.marketplace.service.s3.S3Service;
 import com.teamchallenge.marketplace.util.user.UserUtil;
 import com.teamchallenge.marketplace.validation.RoleValidation;
 import com.teamchallenge.marketplace.validation.Validator;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -21,6 +23,8 @@ import java.util.List;
 @Slf4j
 public class UserService {
     private UserRepository userRepository;
+
+    private S3Service s3Service;
 
     private OrderRepository orderRepository;
 
@@ -53,5 +57,9 @@ public class UserService {
 
         User user = UserUtil.getUser(form);
         return userRepository.save(user);
+    }
+
+    public User updatePicture(int id, MultipartFile img) {
+        return null;
     }
 }
